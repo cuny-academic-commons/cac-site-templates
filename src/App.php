@@ -46,6 +46,12 @@ class App {
 				'show_in_rest' => true,
 				'template'     => [
 					[ 'cac-site-templates/cac-site-template-info' ],
+					[
+						'core/paragraph',
+						[
+							'placeholder' => 'Enter description',
+						]
+					],
 				],
 				'labels'       => [
 					'name'          => 'Site Templates',
