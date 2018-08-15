@@ -615,6 +615,11 @@ registerBlockType('cac-site-templates/cac-site-template-info', {
 	keywords: [__('Site Template'), __('CAC'), __('CUNY Academic Commons')],
 
 	attributes: {
+		demoSiteId: {
+			type: 'integer',
+			source: 'meta',
+			meta: 'demo-site-id'
+		},
 		templateSiteId: {
 			type: 'integer',
 			source: 'meta',
@@ -633,14 +638,12 @@ registerBlockType('cac-site-templates/cac-site-template-info', {
 	edit: function (props) {
 		const {
 			attributes: {
+				demoSiteId,
+				selectedDemoSites,
 				selectedTemplateSites,
 				templateSiteId
 			}
 		} = props;
-
-		const { FormTokenField } = wp.components;
-
-		let refs = {};
 
 		const setSelectedTemplateSites = selectedTemplateSites => {
 			props.setAttributes({ selectedTemplateSites });
@@ -650,10 +653,7 @@ registerBlockType('cac-site-templates/cac-site-template-info', {
 			props.setAttributes({ templateSiteId: selectedTemplateSiteId });
 		};
 
-		const field = React.createElement(__WEBPACK_IMPORTED_MODULE_2__components_site_search__["a" /* default */], {
-			ref: templateSite => {
-				refs.templateSite = templateSite;
-			},
+		const templateSiteField = React.createElement(__WEBPACK_IMPORTED_MODULE_2__components_site_search__["a" /* default */], {
 			labelText: 'Template Site',
 			setSelectedSites: setSelectedTemplateSites,
 			setSelectedSiteId: setSelectedTemplateSiteId,
@@ -661,7 +661,28 @@ registerBlockType('cac-site-templates/cac-site-template-info', {
 			selectedSiteId: templateSiteId
 		});
 
-		return field;
+		const setSelectedDemoSites = selectedDemoSites => {
+			props.setAttributes({ selectedDemoSites });
+		};
+
+		const setSelectedDemoSiteId = selectedDemoSiteId => {
+			props.setAttributes({ demoSiteId: selectedDemoSiteId });
+		};
+
+		const demoSiteField = React.createElement(__WEBPACK_IMPORTED_MODULE_2__components_site_search__["a" /* default */], {
+			labelText: 'Demo Site',
+			setSelectedSites: setSelectedDemoSites,
+			setSelectedSiteId: setSelectedDemoSiteId,
+			selected: selectedDemoSites,
+			selectedSiteId: demoSiteId
+		});
+
+		return React.createElement(
+			'div',
+			null,
+			templateSiteField,
+			demoSiteField
+		);
 	},
 
 	/**
