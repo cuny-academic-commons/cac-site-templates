@@ -950,24 +950,30 @@ class SiteSearch extends Component {
 	componentDidMount() {
 		const { selectedSiteId } = this.props;
 
-		const request = wp.apiFetch({
-			path: '/cac-site-templates/v1/site/' + selectedSiteId
-		});
+		if (selectedSiteId > 0) {
+			const request = wp.apiFetch({
+				path: '/cac-site-templates/v1/site/' + selectedSiteId
+			});
 
-		request.then(site => {
-			const { setSelectedSites } = this.props;
+			request.then(site => {
+				const { setSelectedSites } = this.props;
 
-			this.setState(state => ({
-				availableSites: [site]
-			}));
-			this.updateSelectedSites([site]);
+				this.setState(state => ({
+					availableSites: [site]
+				}));
+				this.updateSelectedSites([site]);
 
-			const selected = [site.name + ' (' + site.url + ')'];
-			setSelectedSites(selected);
-		});
+				const selected = [site.name + ' (' + site.url + ')'];
+				setSelectedSites(selected);
+			});
+		}
 	}
 
 	searchSites(search = '') {
+		if ('' === search) {
+			return;
+		}
+
 		Object(__WEBPACK_IMPORTED_MODULE_0_lodash__["invoke"])(this.searchRequest, ['abort']);
 		this.searchRequest = this.fetchSites({ search });
 	}
