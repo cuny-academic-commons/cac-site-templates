@@ -35,6 +35,9 @@ class App {
 
 		// API endpoints.
 		API::init();
+
+		// Frontend template integration.
+		Frontend::init();
 	}
 
 	public static function register_post_type() {

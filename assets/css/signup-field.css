@@ -1,0 +1,29 @@
+.site-template-selector ul li {
+	list-style-type: none;
+}
+
+.site-template-selector ul li {
+	border-bottom: 2px solid #eaeaea;
+	clear: both;
+	margin-bottom: 2em;
+	padding-bottom: 2em;
+	overflow: hidden;
+}
+
+.site-template-name {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+.site-template-info {
+	margin-top: 1em;
+}
+
+.site-template-image {
+	float: left;
+	width: 350px;
+}
+
+.site-template-meta {
+	margin-left: 350px;
+}
