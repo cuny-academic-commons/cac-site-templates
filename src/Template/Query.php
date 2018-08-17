@@ -14,6 +14,7 @@ class Query {
 
 	public function get_results() {
 		$wp_query_args = [
+			'orderby'        => [ 'menu_order' => 'ASC' ],
 			'post_type'      => 'cac_site_template',
 			'posts_per_page' => -1,
 		];
