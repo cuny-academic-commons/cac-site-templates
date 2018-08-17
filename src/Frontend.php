@@ -25,7 +25,7 @@ class Frontend {
 		?>
 
 <div class="site-template-selector">
-	<h2><?php esc_html_e( 'Site Template', 'cac-site-templates' ); ?></h2>
+	<h3><?php esc_html_e( 'Site Template', 'cac-site-templates' ); ?></h3>
 
 	<p class="site-template-selector-gloss">
 		<?php esc_html_e( 'Select your template site. Your new site will be configured to match the template you have chosen. After your site has been created, you can customize the base configuration in any way you\'d like.', 'cac-site-templates' ); ?>
