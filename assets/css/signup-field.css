@@ -1,10 +1,10 @@
-.site-template-selector ul li {
+.site-template-selector > ul > li {
 	list-style-type: none;
 }
 
-.site-template-selector ul li {
+.site-template-selector > ul > li {
 	border-bottom: 2px solid #eaeaea;
-	clear: both;
+	clear: right;
 	margin-bottom: 2em;
 	padding-bottom: 2em;
 	overflow: hidden;
@@ -17,11 +17,20 @@
 
 .site-template-info {
 	margin-top: 1em;
+	padding-left: 20px;
 }
 
 .site-template-image {
 	float: left;
 	width: 350px;
+}
+
+.site-template-image img {
+	border: 1px solid #aaa;
+}
+
+.site-template-demo-link {
+	font-style: italic;
 }
 
 .site-template-meta {
