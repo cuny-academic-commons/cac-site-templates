@@ -60,7 +60,13 @@ class App {
 					'name'          => 'Site Templates',
 					'singular_name' => 'Site Template',
 				],
-				'supports'     => [ 'editor', 'title', 'custom-fields', 'thumbnail' ],
+				'supports'     => [
+					'custom-fields',
+					'editor',
+					'page-attributes',
+					'thumbnail',
+					'title',
+				],
 			]
 		);
 
