@@ -5,6 +5,7 @@ namespace CAC\SiteTemplates;
 class Frontend {
 	public static function init() {
 		add_action( 'signup_blogform', [ __CLASS__, 'signup_field' ] );
+		add_action( 'wpmu_new_blog', [ __CLASS__, 'process_site_template'] );
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'register_assets' ] );
 	}
 
@@ -68,5 +69,16 @@ class Frontend {
 </div>
 
 		<?php
+	}
+
+	public static function process_site_template( $new_site_id ) {
+		if ( ! isset( $_POST['site-template'] ) ) {
+			return;
+		}
+
+		$site_template_id = intval( $_POST['site-template'] );
+		$site_template    = new Template\Template( $site_template_id );
+
+		$site_template->clone_to_site( $new_site_id );
 	}
 }

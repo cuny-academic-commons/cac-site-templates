@@ -13,6 +13,19 @@ class Template {
 		'demo_site_id'     => 0,
 	];
 
+	public function __construct( $template_id = null ) {
+		if ( is_null( $template_id ) ) {
+			return;
+		}
+
+		$post = get_post( $template_id );
+		if ( ! $post || 'cac_site_template' !== $post->post_type ) {
+			return;
+		}
+
+		$this->populate_from_wp_post( $post );
+	}
+
 	public function populate_from_wp_post( WP_Post $post ) {
 		$this->data['id']          = $post->ID;
 		$this->data['name']        = $post->post_title;
@@ -34,6 +47,10 @@ class Template {
 		return $this->data['description'];
 	}
 
+	public function get_template_site_id() {
+		return (int) $this->data['template_site_id'];
+	}
+
 	public function get_demo_site_id() {
 		return (int) $this->data['demo_site_id'];
 	}
@@ -44,5 +61,12 @@ class Template {
 
 	public function get_demo_site_url() {
 		return get_blog_option( $this->get_demo_site_id(), 'home' );
+	}
+
+	public function clone_to_site( $new_site_id ) {
+		$cloner = new Cloner();
+		$cloner->set_template( $this );
+		$cloner->set_destination_site_id( $new_site_id );
+		$cloner->go();
 	}
 }
