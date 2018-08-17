@@ -34,7 +34,7 @@ class Frontend {
 	<ul>
 		<?php foreach ( $templates as $template ) : ?>
 			<li>
-				<input type="radio" name="site-template" value="<?php echo esc_attr( $template->get_id() ); ?>" id="site-template-<?php echo esc_attr( $template->get_id() ); ?>" /> <label class="site-template-name" for="site-template-<?php echo esc_attr( $template->get_id() ); ?>"><?php echo esc_html( $template->get_name() ); ?></label>
+				<input type="radio" name="site-template" value="<?php echo esc_attr( $template->get_id() ); ?>" id="site-template-<?php echo esc_attr( $template->get_id() ); ?>" <?php checked( $template->is_default() ); ?> /> <label class="site-template-name" for="site-template-<?php echo esc_attr( $template->get_id() ); ?>"><?php echo esc_html( $template->get_name() ); ?></label>
 
 				<div class="site-template-info">
 					<div class="site-template-image">

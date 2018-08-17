@@ -11,6 +11,7 @@ class Template {
 		'description'      => '',
 		'template_site_id' => 0,
 		'demo_site_id'     => 0,
+		'menu_order'       => 0,
 	];
 
 	public function __construct( $template_id = null ) {
@@ -30,6 +31,7 @@ class Template {
 		$this->data['id']          = $post->ID;
 		$this->data['name']        = $post->post_title;
 		$this->data['description'] = $post->post_content;
+		$this->data['menu_order']  = $post->menu_order;
 
 		$this->data['template_site_id'] = (int) get_post_meta( $post->ID, 'template-site-id', true );
 		$this->data['demo_site_id']     = (int) get_post_meta( $post->ID, 'demo-site-id', true );
@@ -61,6 +63,10 @@ class Template {
 
 	public function get_demo_site_url() {
 		return get_blog_option( $this->get_demo_site_id(), 'home' );
+	}
+
+	public function is_default() {
+		return 0 === $this->data['menu_order'];
 	}
 
 	public function clone_to_site( $new_site_id ) {
