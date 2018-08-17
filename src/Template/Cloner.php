@@ -34,6 +34,9 @@ class Cloner {
 
 		$this->migrate_site_settings();
 		$this->migrate_content();
+
+		// Record source info.
+		bp_blogs_update_blogmeta( $this->destination_site_id, 'cac_site_template_id', $this->template->get_id() );
 	}
 
 	/**
