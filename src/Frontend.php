@@ -17,6 +17,10 @@ class Frontend {
 	}
 
 	public static function signup_field() {
+		if ( bp_is_group_admin_page() ) {
+			return;
+		}
+
 		wp_enqueue_style( 'cac-site-template-signup-field' );
 
 		$template_query = new Template\Query();
@@ -25,10 +29,14 @@ class Frontend {
 		?>
 
 <div class="site-template-selector">
-	<h3><?php esc_html_e( 'Site Template', 'cac-site-templates' ); ?></h3>
+	<h3><?php esc_html_e( 'Site Layout', 'cac-site-templates' ); ?></h3>
 
 	<p class="site-template-selector-gloss">
-		<?php esc_html_e( 'Select your template site. Your new site will be configured to match the template you have chosen. After your site has been created, you can customize the base configuration in any way you\'d like.', 'cac-site-templates' ); ?>
+		<?php esc_html_e( 'The Site Layout tool is designed to make the process of creating a Commons site a little easier by helping you choose a design and a collection of plugins that correspond to the purpose of your new site. The following layouts have been suggested by previous Commons users based on their experience.', 'cac-site-templates' ); ?>
+	</p>
+
+	<p class="site-template-selector-gloss">
+		<?php esc_html_e( 'Your new site will be configured to match the layout you choose below. These configurations are defaults only; they can be changed after your site has been created.', 'cac-site-templates' ); ?>
 	</p>
 
 	<ul>
