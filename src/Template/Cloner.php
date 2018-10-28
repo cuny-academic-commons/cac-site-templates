@@ -137,6 +137,8 @@ class Cloner {
 		$upload_dir = wp_upload_dir();
 		$this->copyr( str_replace( $this->destination_site_id, $this->get_template_site_id(), $upload_dir['basedir'] ), $upload_dir['basedir'] );
 
+		remove_action( 'transition_post_status', 'bp_activity_catch_transition_post_type_status', 10, 3 );
+
 		$site_posts = $wpdb->get_results( "SELECT ID, guid, post_author, post_status, post_title, post_type FROM {$wpdb->posts}" );
 		foreach ( $site_posts as $sp ) {
 			if ( 'nav_menu_item' === $sp->post_type ) {
@@ -170,6 +172,8 @@ class Cloner {
 			$post->post_content = str_replace( $source_site_upload_dir, $this_site_upload_dir, $post->post_content );
 			wp_update_post( $post );
 		}
+
+		add_action( 'transition_post_status', 'bp_activity_catch_transition_post_type_status', 10, 3 );
 
 		restore_current_blog();
 	}
