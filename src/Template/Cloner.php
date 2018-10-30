@@ -71,6 +71,8 @@ class Cloner {
 			'fileupload_url',
 		);
 
+		restore_current_blog();
+
 		// now write them all back
 		switch_to_blog( $this->destination_site_id );
 		foreach ( $options as $key => $value ) {
