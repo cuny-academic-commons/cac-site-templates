@@ -206,7 +206,7 @@ class Cloner {
 	 * @param   string $dest   Destination path
 	 * @return  bool     Returns TRUE on success, FALSE on failure
 	 */
-	function copyr( $source, $dest ) {
+	protected function copyr( $source, $dest ) {
 		// Check for symlinks
 		if ( is_link( $source ) ) {
 			return symlink( readlink( $source ), $dest );
