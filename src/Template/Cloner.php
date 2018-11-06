@@ -71,14 +71,30 @@ class Cloner {
 			'fileupload_url',
 		);
 
+		$source_site_upload_dir = wp_upload_dir( null, true, true );
+
 		restore_current_blog();
 
-		// now write them all back
+		// Now write them all back.
 		switch_to_blog( $this->destination_site_id );
+
+		$source_site_url = get_blog_option( $this->get_template_site_id(), 'home' );
+		$dest_site_url   = get_blog_option( $this->destination_site_id, 'home' );
+
+		$dest_site_upload_dir = wp_upload_dir( null, true, true );
+
+		$dest_site_upload_dir   = $dest_site_upload_dir['baseurl'];
+		$source_site_upload_dir = $source_site_upload_dir['baseurl'];
+
 		foreach ( $options as $key => $value ) {
-			if ( ! in_array( $key, $preserve_option ) ) {
-				update_option( $key, $value );
+			if ( in_array( $key, $preserve_option ) ) {
+				continue;
 			}
+
+			$value = $this->search_replace( $source_site_upload_dir, $dest_site_upload_dir, $value );
+			$value = $this->search_replace( $source_site_url, $dest_site_url, $value );
+
+			update_option( $key, $value );
 		}
 
 		// add the theme mods
@@ -226,5 +242,32 @@ class Cloner {
 		// Clean up
 		$dir->close();
 		return true;
+	}
+
+	/**
+	 * Recursive-friendly search/replace.
+	 */
+	protected function search_replace( $search, $replace, $data ) {
+		if ( is_string( $data ) && ! is_serialized( $data ) ) {
+			return str_replace( $search, $replace, $data );
+		}
+
+		if ( is_array( $data ) ) {
+			$keys = array_keys( $data );
+			foreach ( $keys as $key ) {
+				$data[ $key ] = $this->search_replace( $search, $replace, $data[ $key ] );
+			}
+		} elseif ( is_object( $data ) ) {
+			foreach ( $data as $key => $value ) {
+				$data->{$key} = $this->search_replace( $search, $replace, $value );
+			}
+		} elseif ( is_string( $data ) ) {
+			$unserialized = @unserialize( $data );
+			if ( $unserialized ) {
+				$data = $this->search_replace( $search, $replace, $unserialized );
+			}
+		}
+
+		return $data;
 	}
 }
