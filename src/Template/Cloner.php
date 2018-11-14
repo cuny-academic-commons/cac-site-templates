@@ -32,6 +32,8 @@ class Cloner {
 			return false;
 		}
 
+		wp_installing( false );
+
 		$this->migrate_site_settings();
 		$this->migrate_content();
 
