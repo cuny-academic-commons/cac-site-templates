@@ -109,11 +109,13 @@ class Cloner {
 			}
 
 			$source_packages = get_blog_option( $this->get_template_site_id(), 'cac_plugin_packages' );
-			foreach ( $source_packages as $plugin_package ) {
-				bp_blogs_add_blogmeta( $this->destination_site_id, "activated_plugin_package_{$plugin_package}", time() );
-			}
+			if ( is_array( $source_packages ) ) {
+				foreach ( $source_packages as $plugin_package ) {
+					bp_blogs_add_blogmeta( $this->destination_site_id, "activated_plugin_package_{$plugin_package}", time() );
+				}
 
-			update_option( 'cac_plugin_packages', $source_packages, 'no' );
+				update_option( 'cac_plugin_packages', $source_packages, 'no' );
+			}
 		}
 
 		// Just in case
