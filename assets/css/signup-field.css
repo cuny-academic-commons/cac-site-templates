@@ -36,3 +36,15 @@
 .site-template-meta {
 	margin-left: 350px;
 }
+
+@media screen and (max-width:768px) {
+	.site-template-image {
+		float: none;
+		margin-bottom: 2em;
+		max-width: 90%;
+		width: auto;
+	}
+	.site-template-meta {
+		margin-left: 0;
+	}
+}
