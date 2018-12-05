@@ -14,6 +14,22 @@ class Frontend {
 			'cac-site-template-signup-field',
 			CAC_SITE_TEMPLATES_PLUGIN_URL . '/assets/css/signup-field.css'
 		);
+
+		wp_register_script(
+			'cac-site-templates-site-create',
+			CAC_SITE_TEMPLATES_PLUGIN_URL . '/assets/js/site-create.js',
+			[ 'jquery' ],
+			false,
+			true
+		);
+
+		wp_localize_script(
+			'cac-site-templates-site-create',
+			'CACSiteTemplatesSiteCreate',
+			[
+				'confirm' => __( 'By leaving this page, you will cancel the site creation process. Are you sure you want to leave?', 'cac-site-templates' ),
+			]
+		);
 	}
 
 	public static function signup_field() {
@@ -22,6 +38,7 @@ class Frontend {
 		}
 
 		wp_enqueue_style( 'cac-site-template-signup-field' );
+		wp_enqueue_script( 'cac-site-templates-site-create' );
 
 		$template_query = new Template\Query();
 		$templates      = $template_query->get_results();
