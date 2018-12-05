@@ -56,6 +56,10 @@ class Frontend {
 		<?php esc_html_e( 'Your new site will be configured to match the layout you choose below. These configurations are defaults only; they can be changed after your site has been created.', 'cac-site-templates' ); ?>
 	</p>
 
+	<p class="site-template-selector-gloss">
+		<?php esc_html_e( 'To open demo sites in a new tab without disrupting the site creation process, right-click the URLs.', 'cac-site-templates' ); ?>
+	</p>
+
 	<ul>
 		<?php foreach ( $templates as $template ) : ?>
 			<li>
