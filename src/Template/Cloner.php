@@ -63,6 +63,7 @@ class Cloner {
 
 		$preserve_option = array(
 			'siteurl',
+			'blog_public',
 			'blogname',
 			'admin_email',
 			'new_admin_email',
