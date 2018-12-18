@@ -32,5 +32,5 @@ function cac_site_templates() {
 }
 
 add_action( 'plugins_loaded', function() {
-	cac_site_templates()::init();
+	cac_site_templates()->init();
 } );
