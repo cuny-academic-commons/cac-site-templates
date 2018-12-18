@@ -26,7 +26,7 @@ class App {
 		return $instance;
 	}
 
-	public static function init() {
+	public function init() {
 		// Initialize Gutenberg blocks.
 		Blocks::init();
 
