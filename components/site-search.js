@@ -1,4 +1,4 @@
-const { FormTokenField } = wp.components
+const { FormTokenField } = '@wordpress/components'
 const { Component } = wp.element
 
 import { find, invoke, throttle } from 'lodash'

@@ -932,7 +932,7 @@ exports.push([module.i, "/**\n * #.# Editor Styles\n *\n * CSS for just Backend 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
-const { FormTokenField } = wp.components;
+const { FormTokenField } = '@wordpress/components';
 const { Component } = wp.element;
 
 
