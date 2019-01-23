@@ -32,6 +32,15 @@ class Cloner {
 			return false;
 		}
 
+		// Sanity check - don't clone if destination site is more than a minute old.
+		$destination_site = get_site( $this->destination_site_id );
+		if ( $destination_site ) {
+			$updated = strtotime( $destination_site->last_updated );
+			if ( ( time() - $updated ) > MINUTE_IN_SECONDS ) {
+				return false;
+			}
+		}
+
 		wp_installing( false );
 
 		$this->migrate_site_settings();
