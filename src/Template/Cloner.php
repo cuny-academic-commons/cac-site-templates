@@ -207,7 +207,12 @@ class Cloner {
 
 		add_action( 'transition_post_status', 'bp_activity_catch_transition_post_type_status', 10, 3 );
 
+		$GLOBALS['wp_rewrite']->init();
+		flush_rewrite_rules();
+
 		restore_current_blog();
+
+		$GLOBALS['wp_rewrite']->init();
 	}
 
 	/**
