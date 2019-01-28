@@ -200,9 +200,15 @@ class Cloner {
 
 		foreach ( $wpdb->get_col( "SELECT ID FROM $wpdb->posts" ) as $post_id ) {
 			$post               = get_post( $post_id );
-			$post->post_content = str_replace( $source_site_url, $this_site_url, $post->post_content );
-			$post->post_content = str_replace( $source_site_upload_dir, $this_site_upload_dir, $post->post_content );
-			wp_update_post( $post );
+			$original_content   = $post->post_content;
+
+			$new_content = str_replace( $source_site_url, $this_site_url, $original_content );
+			$new_content = str_replace( $source_site_upload_dir, $this_site_upload_dir, $new_content );
+
+			if ( $new_content !== $original_content ) {
+				$post->post_content = $new_content;
+				wp_update_post( $post );
+			}
 		}
 
 		add_action( 'transition_post_status', 'bp_activity_catch_transition_post_type_status', 10, 3 );
