@@ -33,7 +33,7 @@ class Frontend {
 	}
 
 	public static function signup_field() {
-		if ( bp_is_group_admin_page() || bp_is_group_create() ) {
+		if ( bp_is_group_admin_page() ) {
 			return;
 		}
 
