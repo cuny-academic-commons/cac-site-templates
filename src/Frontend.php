@@ -76,13 +76,16 @@ class Frontend {
 							if ( $template->get_demo_site_id() ) {
 								$demo_site_url = $template->get_demo_site_url();
 								printf(
-									esc_html__( 'Demo: %s', 'cac-site-templates' ),
+									'<a href="%s" target="_blank">%s</a>',
+									esc_attr( $demo_site_url ),
 									sprintf(
-										'<a href="%s">%s</a>',
-										esc_attr( $demo_site_url ),
-										esc_html( $demo_site_url )
+										esc_html__( '%s Demo', 'cac-site-templates' ),
+										esc_html( $template->get_name() )
 									)
 								);
+
+								echo '<span class="site-template-new-window-gloss">' . esc_html__( '(link will open in a new window)', 'cac-site-templates' ) . '</span>';
+
 							}
 							?>
 						</div>
