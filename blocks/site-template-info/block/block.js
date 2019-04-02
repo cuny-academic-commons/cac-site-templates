@@ -9,7 +9,7 @@
 import './style.scss';
 import './editor.scss';
 
-import SiteSearch from '../../../components/site-search'
+import { SiteSearch } from '../../../components/site-search'
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks

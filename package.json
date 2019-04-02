@@ -10,8 +10,9 @@
     "extends @wordpress/browserslist-config"
   ],
   "dependencies": {
-    "@wordpress/browserslist-config": "^2.1.0",
     "@babel/runtime": "^7.0.0-beta.56",
+    "@wordpress/browserslist-config": "^2.1.0",
+    "@wordpress/components": "^7.2.0",
     "classnames": "^2.2.5",
     "core-js": "^2.5.7"
   },
