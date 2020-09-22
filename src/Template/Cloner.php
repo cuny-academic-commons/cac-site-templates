@@ -189,6 +189,19 @@ class Cloner {
 					update_post_meta( $sp->ID, '_menu_item_url', str_replace( $source_site_url, $dest_site_url, $url ) );
 				}
 			}
+
+			// Switch authorship of posts and pages.
+			if ( 'post' === $sp->post_type || 'page' === $sp->post_type ) {
+				$wpdb->update(
+					$wpdb->posts,
+					array(
+						'post_author' => get_current_user_id(),
+					),
+					array(
+						'ID' => $sp->ID,
+					)
+				);
+			}
 		}
 
 		// Replace the site URL and upload URL in all post content.
