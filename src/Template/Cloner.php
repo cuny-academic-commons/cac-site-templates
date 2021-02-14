@@ -79,6 +79,7 @@ class Cloner {
 			'home',
 			'upload_path',
 			'db_version',
+			$wpdb->get_blog_prefix( $this->get_template_site_id() ) . 'user_roles',
 			$wpdb->get_blog_prefix( $this->destination_site_id ) . 'user_roles',
 			'fileupload_url',
 		);
