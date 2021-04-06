@@ -110,6 +110,11 @@ class Cloner {
 			update_option( $key, $value );
 		}
 
+		// Override the new site's user roles with those from the source site.
+		if ( isset( $options[ $wpdb->get_blog_prefix( $this->get_template_site_id() ) . 'user_roles'] ) ) {
+			update_option( $wpdb->get_blog_prefix( $this->destination_site_id ) . 'user_roles', $options[ $wpdb->get_blog_prefix( $this->get_template_site_id() ) . 'user_roles' ] );
+		}
+
 		// add the theme mods
 		update_option( 'mods_' . $theme, $mods );
 
