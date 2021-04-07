@@ -79,6 +79,7 @@ class Cloner {
 			'home',
 			'upload_path',
 			'db_version',
+			$wpdb->get_blog_prefix( $this->get_template_site_id() ) . 'user_roles',
 			$wpdb->get_blog_prefix( $this->destination_site_id ) . 'user_roles',
 			'fileupload_url',
 		);
@@ -107,6 +108,11 @@ class Cloner {
 			$value = $this->search_replace( $source_site_url, $dest_site_url, $value );
 
 			update_option( $key, $value );
+		}
+
+		// Override the new site's user roles with those from the source site.
+		if ( isset( $options[ $wpdb->get_blog_prefix( $this->get_template_site_id() ) . 'user_roles'] ) ) {
+			update_option( $wpdb->get_blog_prefix( $this->destination_site_id ) . 'user_roles', $options[ $wpdb->get_blog_prefix( $this->get_template_site_id() ) . 'user_roles' ] );
 		}
 
 		// add the theme mods
