@@ -6,12 +6,16 @@ use \WP_Post;
 
 class Template {
 	protected $data = [
-		'id'               => 0,
-		'name'             => '',
-		'description'      => '',
-		'template_site_id' => 0,
-		'demo_site_id'     => 0,
-		'menu_order'       => 0,
+		'id'                      => 0,
+		'name'                    => '',
+		'description'             => '',
+		'template_site_id'        => 0,
+		'demo_site_id'            => 0,
+		'template_site_link_text' => 0,
+		'template_site_link_url'  => 0,
+		'demo_site_link_text'     => 0,
+		'demo_site_link_url'      => 0,
+		'menu_order'              => 0,
 	];
 
 	public function __construct( $template_id = null ) {
@@ -35,6 +39,10 @@ class Template {
 
 		$this->data['template_site_id'] = (int) get_post_meta( $post->ID, 'template-site-id', true );
 		$this->data['demo_site_id']     = (int) get_post_meta( $post->ID, 'demo-site-id', true );
+
+		$this->data['demo_site_link_url']  = get_post_meta( $post->ID, 'demo-site-link-url', true );
+		$this->data['demo_site_link_text'] = get_post_meta( $post->ID, 'demo-site-link-text', true );
+		_b( $this->data );
 	}
 
 	public function get_id() {
@@ -55,6 +63,14 @@ class Template {
 
 	public function get_demo_site_id() {
 		return (int) $this->data['demo_site_id'];
+	}
+
+	public function get_demo_site_link_text() {
+		return $this->data['demo_site_link_text'];
+	}
+
+	public function get_demo_site_link_url() {
+		return $this->data['demo_site_link_url'];
 	}
 
 	public function get_image_markup() {

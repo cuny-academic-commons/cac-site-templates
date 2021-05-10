@@ -91,5 +91,27 @@ class App {
 				'type'           => 'integer',
 			]
 		);
+
+		register_meta(
+			'post',
+			'template-site-id',
+			[
+				'object_subtype' => 'cac_site_template',
+				'show_in_rest'   => true,
+				'single'         => true,
+				'type'           => 'demo-site-link-text',
+			]
+		);
+
+		register_meta(
+			'post',
+			'template-site-id',
+			[
+				'object_subtype' => 'cac_site_template',
+				'show_in_rest'   => true,
+				'single'         => true,
+				'type'           => 'demo-site-link-url',
+			]
+		);
 	}
 }

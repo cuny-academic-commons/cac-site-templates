@@ -69,18 +69,24 @@ class Frontend {
 					<div class="site-template-meta">
 						<div class="site-template-demo-link">
 							<?php
-							if ( $template->get_demo_site_id() ) {
-								$demo_site_url = $template->get_demo_site_url();
-								printf(
-									'<a href="%s" target="_blank">%s %s</a>',
-									esc_attr( $demo_site_url ),
-									sprintf(
-										esc_html__( '%s Demo', 'cac-site-templates' ),
-										esc_html( $template->get_name() )
-									),
-									esc_html__( '(opens in new window)', 'cac-site-templates' )
+							$demo_site_id = $template->get_demo_site_id();
+							if ( $demo_site_id ) {
+								$demo_site_link_url  = $template->get_demo_site_url();
+								$demo_site_link_text = sprintf(
+									esc_html__( '%s Demo', 'cac-site-templates' ),
+									esc_html( $template->get_name() )
 								);
+							} else {
+								$demo_site_link_url  = $template->get_demo_site_link_url();
+								$demo_site_link_text = $template->get_demo_site_link_text();
 							}
+
+							printf(
+								'<a href="%s" target="_blank">%s %s</a>',
+								esc_attr( $demo_site_link_url ),
+								esc_html( $demo_site_link_text ),
+								esc_html__( '(opens in new window)', 'cac-site-templates' )
+							);
 							?>
 						</div>
 
