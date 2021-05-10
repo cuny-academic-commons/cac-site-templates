@@ -10,6 +10,8 @@ import './style.scss';
 import './editor.scss';
 
 import { SiteSearch } from '../../../components/site-search'
+import { TextControl } from '@wordpress/components';
+import { withState } from '@wordpress/compose';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -47,6 +49,11 @@ registerBlockType( 'cac-site-templates/cac-site-template-info', {
 			type: 'integer',
 			source: 'meta',
 			meta: 'template-site-id',
+		},
+		templateSiteLinkText: {
+			type: 'string',
+			source: 'meta',
+			meta: 'template-site-link-text',
 		}
 	},
 
@@ -84,6 +91,16 @@ registerBlockType( 'cac-site-templates/cac-site-template-info', {
 			selectedSiteId={templateSiteId}
 		/>
 
+		const templateSiteLinkTextField = withState( {
+			templateSiteLinkText: '',
+		} )( ( { templateSiteLinkText, setState } ) => (
+			<TextControl
+				label="Template Site Link Text"
+				value={ templateSiteLinkText }
+				onChange={ ( templateSiteLinkText ) => setState( { templateSiteLinkText } ) }
+			/>
+		) )
+
 		const setSelectedDemoSites = (selectedDemoSites) => {
 			props.setAttributes( { selectedDemoSites } )
 		}
@@ -103,6 +120,7 @@ registerBlockType( 'cac-site-templates/cac-site-template-info', {
 		return (
 			<div>
 				{templateSiteField}
+				{templateSiteLinkTextField}
 				{demoSiteField}
 			</div>
 		)

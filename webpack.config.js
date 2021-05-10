@@ -9,10 +9,10 @@ var webpack = require( 'webpack' ),
 			filename: 'dist/block.build.js',
 		},
 		module: {
-			loaders: [
-				{
-					test: /.js$/,
-					loader: 'babel-loader',
+			rules: [
+        {
+					test: /\.(js)$/,
+					use: [ 'babel-loader' ],
 					exclude: /node_modules/,
 				},
 				{
@@ -23,7 +23,7 @@ var webpack = require( 'webpack' ),
 						"sass-loader"
 					]
 				},
-			],
+			]
 		},
 		plugins: [
 			new webpack.DefinePlugin( {
