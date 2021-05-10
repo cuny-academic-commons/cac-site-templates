@@ -39,7 +39,7 @@
     "react-dom": "^16.4.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.22.0",
-    "webpack": "^3.8.1"
+    "webpack": "^5.26.2"
   },
   "main": "dist/block.js"
 }
