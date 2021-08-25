@@ -42,7 +42,6 @@ class Template {
 
 		$this->data['demo_site_link_url']  = get_post_meta( $post->ID, 'demo-site-link-url', true );
 		$this->data['demo_site_link_text'] = get_post_meta( $post->ID, 'demo-site-link-text', true );
-		_b( $this->data );
 	}
 
 	public function get_id() {
