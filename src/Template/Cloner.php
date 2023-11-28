@@ -82,6 +82,7 @@ class Cloner {
 			$wpdb->get_blog_prefix( $this->get_template_site_id() ) . 'user_roles',
 			$wpdb->get_blog_prefix( $this->destination_site_id ) . 'user_roles',
 			'fileupload_url',
+			'timezone_string',
 		);
 
 		$source_site_upload_dir = wp_upload_dir( null, true, true );
