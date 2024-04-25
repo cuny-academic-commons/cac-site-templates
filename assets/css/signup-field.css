@@ -4,6 +4,11 @@
 
 .site-template-selector > ul {
 	margin-top: 25px;
+	padding-left: 0;
+}
+
+.site-template-selector label {
+	display: inline;
 }
 
 .site-template-selector > ul > li {
