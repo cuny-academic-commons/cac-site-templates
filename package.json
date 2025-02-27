@@ -3,48 +3,50 @@
   "version": "1.0.0",
   "license": "GPL-2.0-or-later",
   "scripts": {
-    "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack",
-    "dev": "cross-env BABEL_ENV=default webpack --watch"
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development webpack --watch"
   },
   "browserslist": [
     "extends @wordpress/browserslist-config"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.56",
-    "@wordpress/browserslist-config": "^2.1.0",
-    "@wordpress/components": "^7.2.0",
-    "classnames": "^2.2.5",
-    "core-js": "^2.5.7"
+    "@babel/runtime": "^7.24.0",
+    "@wordpress/browserslist-config": "*",
+    "@wordpress/components": "^21.0.0",
+    "classnames": "^2.5.0",
+    "core-js": "^3.36.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
   },
   "devDependencies": {
-    "@wordpress/babel-preset-default": "^1.1.0",
-    "@wordpress/deprecated": "^1.0.2",
-    "@wordpress/element": "^1.0.2",
-    "@wordpress/is-shallow-equal": "^1.1.2",
-    "autoprefixer": "^7.1.6",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
-    "cross-env": "^5.1.1",
-    "css-loader": "^1.0.0",
-    "enzyme": "^3.9.0",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "node-sass": "^4.14.1",
-    "postcss-loader": "^2.0.9",
-    "raw-loader": "^0.5.1",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.22.0",
-    "webpack": "^5.26.2",
-    "webpack-cli": "^4.7.0"
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.24.0",
+    "@babel/plugin-transform-runtime": "^7.24.0",
+    "@wordpress/babel-preset-default": "^8.0.0",
+    "@wordpress/deprecated": "*",
+    "@wordpress/element": "^5.0.0",
+    "@wordpress/is-shallow-equal": "^4.0.0",
+    "autoprefixer": "^10.4.19",
+    "babel-loader": "^9.1.3",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.10.0",
+    "enzyme": "^3.11.0",
+    "postcss-loader": "^7.1.2",
+    "raw-loader": "^4.0.2",
+    "sass": "^1.75.0",
+    "sass-loader": "^14.2.0",
+    "style-loader": "*",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   },
   "babel": {
     "presets": [
-      "@babel/preset-env"
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
     ]
   },
   "main": "dist/block.js"
