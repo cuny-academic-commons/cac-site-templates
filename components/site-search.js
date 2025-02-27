@@ -1,6 +1,6 @@
 const { Component } = wp.element
+const { FormTokenField } = wp.components
 
-import { FormTokenField } from '@wordpress/components'
 import { find, invoke, throttle } from 'lodash'
 
 class SiteSearch extends Component {
