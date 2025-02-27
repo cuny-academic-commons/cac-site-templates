@@ -30,7 +30,7 @@ class Blocks {
 		wp_enqueue_script(
 			'cac-site-templates-block-js',
 			CAC_SITE_TEMPLATES_PLUGIN_URL . '/dist/block.build.js',
-			array( 'wp-blocks', 'wp-i18n', 'wp-element' )
+			array( 'lodash', 'wp-blocks', 'wp-i18n', 'wp-element' )
 		);
 	}
 }
