@@ -122,7 +122,12 @@ class Site extends WP_REST_Controller {
 
 		$site_id = $request->get_param( 'id' );
 
-		$results = $this->format_site( get_site( $site_id ) );
+		$site = get_site( $site_id );
+		if ( ! $site ) {
+			return new WP_REST_Response( null, 404 );
+		}
+
+		$results = $this->format_site( $site );
 
 		return rest_ensure_response( $results );
 	}

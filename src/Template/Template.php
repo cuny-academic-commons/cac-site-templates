@@ -88,6 +88,6 @@ class Template {
 		$cloner = new Cloner();
 		$cloner->set_template( $this );
 		$cloner->set_destination_site_id( $new_site_id );
-		$cloner->go();
+		return $cloner->go();
 	}
 }

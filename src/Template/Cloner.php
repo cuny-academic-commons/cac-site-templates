@@ -48,6 +48,8 @@ class Cloner {
 
 		// Record source info.
 		bp_blogs_update_blogmeta( $this->destination_site_id, 'cac_site_template_id', $this->template->get_id() );
+
+		return true;
 	}
 
 	/**
