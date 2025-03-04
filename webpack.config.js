@@ -1,42 +1,23 @@
-var webpack = require( 'webpack' ),
-	NODE_ENV = process.env.NODE_ENV || 'development',
-	webpackConfig = {
-		entry: {
-			siteTemplateInfo: './blocks/site-template-info/blocks.js',
-		},
-		output: {
-			path: __dirname,
-			filename: 'dist/block.build.js',
-		},
-		module: {
-			rules: [
-        {
-					test: /\.(js)$/,
-					use: [ 'babel-loader' ],
-					exclude: /node_modules/,
-				},
-				{
-					test: /.scss$/,
-					use: [
-						"style-loader",
-						"css-loader",
-						"sass-loader"
-					]
-				},
-			]
-		},
-		plugins: [
-			new webpack.DefinePlugin( {
-				'process.env.NODE_ENV': JSON.stringify( NODE_ENV )
-			} ),
-		],
-		externals: {
-			lodash: 'lodash'
-		}
-	};
+// webpack.config.js
+const defaultConfig = require("@wordpress/scripts/config/webpack.config");
+const path = require("path");
 
-if ( 'production' === NODE_ENV ) {
-	webpackConfig.plugins.push( new webpack.optimize.UglifyJsPlugin() );
-}
-
-module.exports = webpackConfig;
+module.exports = {
+  ...defaultConfig,
+  module: {
+    ...defaultConfig.module,
+    rules: [
+      ...defaultConfig.module.rules,
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules\/(?!gutenberg-post-picker)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react']
+          },
+        },
+      },
+    ],
+  },
+};
