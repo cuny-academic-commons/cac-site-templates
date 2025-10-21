@@ -64,6 +64,11 @@ class Cloner {
 		$all_options = wp_load_alloptions();
 		$options     = array();
 		foreach ( array_keys( $all_options ) as $key ) {
+			// Skip transients.
+			if ( 0 === strpos( $key, '_transient_' ) || 0 === strpos( $key, '_site_transient_' ) ) {
+				continue;
+			}
+
 			$options[ $key ] = get_option( $key );  // have to do this to deal with arrays
 		}
 
