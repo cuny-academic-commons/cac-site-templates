@@ -300,18 +300,23 @@ class Cloner {
 		}
 
 		if ( is_array( $data ) ) {
-			$keys = array_keys( $data );
-			foreach ( $keys as $key ) {
-				$data[ $key ] = $this->search_replace( $search, $replace, $data[ $key ] );
-			}
-		} elseif ( is_object( $data ) ) {
 			foreach ( $data as $key => $value ) {
-				$data->{$key} = $this->search_replace( $search, $replace, $value );
+				$data[ $key ] = $this->search_replace( $search, $replace, $value );
 			}
 		} elseif ( is_string( $data ) ) {
+			// Skip serialized objects
+			if ( preg_match( '/^[OCU]:\d+:/', $data ) ) {
+				// O = object, C = custom serialized object, U = unicode object
+				return $data;
+			}
+
 			$unserialized = @unserialize( $data );
-			if ( $unserialized ) {
-				$data = $this->search_replace( $search, $replace, $unserialized );
+			if ( $unserialized !== false || $data === 'b:0;' ) {
+				// Check if it's safe to recurse
+				if ( is_array( $unserialized ) ) {
+					$unserialized = $this->search_replace( $search, $replace, $unserialized );
+					$data = serialize( $unserialized );
+				}
 			}
 		}
 
