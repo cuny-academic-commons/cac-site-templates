@@ -33,7 +33,9 @@ class Frontend {
 	}
 
 	public static function signup_field() {
-		if ( bp_is_group_admin_page() ) {
+		// Don't show on group admin panel when the group already has an associated site.
+		$groupblog_id = get_groupblog_blog_id();
+		if ( bp_is_group_admin_page() && ! empty( $groupblog_id ) ) {
 			return;
 		}
 
@@ -45,7 +47,7 @@ class Frontend {
 
 		?>
 
-<div class="site-template-selector">
+<div class="site-template-selector" id="site-template-selector">
 	<h3><?php esc_html_e( 'Site Layout', 'cac-site-templates' ); ?></h3>
 
 	<p class="site-template-selector-gloss">
