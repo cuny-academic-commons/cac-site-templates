@@ -1,8 +1,34 @@
-.site-template-selector h3 {
-	margin-bottom: 14px;
+.site-template-selector {
+	margin-top: 48px;
 }
 
-.site-template-selector > ul {
+.site-template-selector fieldset {
+	border: 0;
+	margin: 0;
+	min-width: 0;
+	padding: 0;
+}
+
+.site-template-selector legend {
+	font-family: var(--sans-serif);
+	font-size: var(--size-h3);
+	font-weight: 700;
+	line-height: 1.3em;
+	margin: .6em 0 14px;
+	padding: 0;
+}
+
+#setupform .site-template-selector legend {
+	font-size: var(--size-h5-desktop);
+}
+
+@media screen and (min-width: 600px) {
+	.site-template-selector legend {
+		font-size: var(--size-h3-desktop);
+	}
+}
+
+.site-template-selector fieldset > ul {
 	margin-top: 25px;
 	padding-left: 0;
 }
@@ -11,11 +37,11 @@
 	display: inline;
 }
 
-.site-template-selector > ul > li {
+.site-template-selector fieldset > ul > li {
 	list-style-type: none;
 }
 
-.site-template-selector > ul > li {
+.site-template-selector fieldset > ul > li {
 	border-bottom: 2px solid #eaeaea;
 	clear: right;
 	margin-bottom: 2em;
@@ -23,7 +49,7 @@
 	overflow: hidden;
 }
 
-.site-template-selector > ul > li input[type="radio"] {
+.site-template-selector fieldset > ul > li input[type="radio"] {
 	margin-top: -1px;
 	vertical-align: middle;
 }

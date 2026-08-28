@@ -48,58 +48,60 @@ class Frontend {
 		?>
 
 <div class="site-template-selector" id="site-template-selector">
-	<h3><?php esc_html_e( 'Site Layout', 'cac-site-templates' ); ?></h3>
+	<fieldset>
+		<legend><?php esc_html_e( 'Site Layout', 'cac-site-templates' ); ?></legend>
 
-	<p class="site-template-selector-gloss">
-		<?php esc_html_e( 'The Site Layout tool is designed to make the process of creating a Commons site a little easier by helping you choose a design and a collection of plugins that correspond to the purpose of your new site. The following layouts have been suggested by previous Commons users based on their experience.', 'cac-site-templates' ); ?>
-	</p>
+		<p class="site-template-selector-gloss">
+			<?php esc_html_e( 'The Site Layout tool is designed to make the process of creating a Commons site a little easier by helping you choose a design and a collection of plugins that correspond to the purpose of your new site. The following layouts have been suggested by previous Commons users based on their experience.', 'cac-site-templates' ); ?>
+		</p>
 
-	<p class="site-template-selector-gloss">
-		<?php esc_html_e( 'Your new site will be configured to match the layout you choose below. These configurations are defaults only; they can be changed after your site has been created.', 'cac-site-templates' ); ?>
-	</p>
+		<p class="site-template-selector-gloss">
+			<?php esc_html_e( 'Your new site will be configured to match the layout you choose below. These configurations are defaults only; they can be changed after your site has been created.', 'cac-site-templates' ); ?>
+		</p>
 
-	<ul>
-		<?php foreach ( $templates as $template ) : ?>
-			<li>
-				<input type="radio" name="site-template" value="<?php echo esc_attr( $template->get_id() ); ?>" id="site-template-<?php echo esc_attr( $template->get_id() ); ?>" <?php checked( $template->is_default() ); ?> /> <label class="site-template-name" for="site-template-<?php echo esc_attr( $template->get_id() ); ?>"><?php echo esc_html( $template->get_name() ); ?></label>
+		<ul>
+			<?php foreach ( $templates as $template ) : ?>
+				<li>
+					<input type="radio" name="site-template" value="<?php echo esc_attr( $template->get_id() ); ?>" id="site-template-<?php echo esc_attr( $template->get_id() ); ?>" <?php checked( $template->is_default() ); ?> /> <label class="site-template-name" for="site-template-<?php echo esc_attr( $template->get_id() ); ?>"><?php echo esc_html( $template->get_name() ); ?></label>
 
-				<div class="site-template-info">
-					<div class="site-template-image">
-						<?php echo $template->get_image_markup(); ?>
-					</div>
+					<div class="site-template-info">
+						<div class="site-template-image">
+							<?php echo $template->get_image_markup(); ?>
+						</div>
 
-					<div class="site-template-meta">
-						<div class="site-template-demo-link">
-							<?php
-							$demo_site_id = $template->get_demo_site_id();
-							if ( $demo_site_id ) {
-								$demo_site_link_url  = $template->get_demo_site_url();
-								$demo_site_link_text = sprintf(
-									esc_html__( '%s Demo', 'cac-site-templates' ),
-									esc_html( $template->get_name() )
+						<div class="site-template-meta">
+							<div class="site-template-demo-link">
+								<?php
+								$demo_site_id = $template->get_demo_site_id();
+								if ( $demo_site_id ) {
+									$demo_site_link_url  = $template->get_demo_site_url();
+									$demo_site_link_text = sprintf(
+										esc_html__( '%s Demo', 'cac-site-templates' ),
+										esc_html( $template->get_name() )
+									);
+								} else {
+									$demo_site_link_url  = $template->get_demo_site_link_url();
+									$demo_site_link_text = $template->get_demo_site_link_text();
+								}
+
+								printf(
+									'<a href="%s" target="_blank">%s %s</a>',
+									esc_attr( $demo_site_link_url ),
+									esc_html( $demo_site_link_text ),
+									esc_html__( '(opens in new window)', 'cac-site-templates' )
 								);
-							} else {
-								$demo_site_link_url  = $template->get_demo_site_link_url();
-								$demo_site_link_text = $template->get_demo_site_link_text();
-							}
+								?>
+							</div>
 
-							printf(
-								'<a href="%s" target="_blank">%s %s</a>',
-								esc_attr( $demo_site_link_url ),
-								esc_html( $demo_site_link_text ),
-								esc_html__( '(opens in new window)', 'cac-site-templates' )
-							);
-							?>
-						</div>
-
-						<div class="site-template-description">
-							<?php echo $template->get_description(); ?>
+							<div class="site-template-description">
+								<?php echo $template->get_description(); ?>
+							</div>
 						</div>
 					</div>
-				</div>
-			</li>
-		<?php endforeach; ?>
-	</ul>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	</fieldset>
 </div>
 
 		<?php
